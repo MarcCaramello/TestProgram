@@ -19,15 +19,13 @@ class Person {
 // --------------------------------------------------
 
 void Loop_MenuChoice();
-void AddPerson();
-void DeletePerson();
-void PrintAllPeople();
+void AddPerson(list<Person>& AllPeople);
+void DeletePerson(list<Person>& AllPeople);
+void PrintAllPeople(list<Person>& AllPeople);
 
 // --------------------------------------------------
 
 int main() {
-    list<Person> AllPeople;
-    
     cout << "\n";
     cout << "This program is used to keep track of a database of people.\n";
     Loop_MenuChoice();
@@ -38,6 +36,7 @@ int main() {
 // --------------------------------------------------
 
 void Loop_MenuChoice(){
+    list<Person> AllPeople;
     string inputChoice;
     
     while(2 > 1) {
@@ -55,13 +54,13 @@ void Loop_MenuChoice(){
         cout << "\n";
 
         if(inputChoice == "1"){
-            AddPerson();
+            AddPerson(AllPeople);
         }
         else if(inputChoice == "2"){
-            DeletePerson();
+            DeletePerson(AllPeople);
         }
         else if(inputChoice == "3"){
-            PrintAllPeople();
+            PrintAllPeople(AllPeople);
         }
         else if(inputChoice == "4"){
             cout << "\n\n";
@@ -72,12 +71,12 @@ void Loop_MenuChoice(){
         }
     }
 }
-void AddPerson(){
+void AddPerson(list<Person>& AllPeople){
     cout << "Here is where I would: add a person.\n";
 }
-void DeletePerson(){
+void DeletePerson(list<Person>& AllPeople){
     cout << "Here is where I would: delete a person.\n";
 }
-void PrintAllPeople(){
+void PrintAllPeople(list<Person>& AllPeople){
     cout << "Here is where I would: print all people.\n";
 }
