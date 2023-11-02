@@ -4,7 +4,7 @@ using namespace std;
 
 int main()
 {
-    string consoleOutput = "Hello universe!";
+    string consoleOutput = "This is a test";
     cout << consoleOutput;
     return 0;
 }
