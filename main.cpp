@@ -5,23 +5,24 @@ using namespace std;
 // --------------------------------------------------
 
 class Person {
-    string FirstName;
-    string Gender;
-    int Age;
+    public:
+        string FirstName;
+        string Gender;
+        int Age;
 
-    Person(string firstName, string gender, int age) {
-        FirstName = firstName;
-        Gender = gender;
-        Age = age;
-    }
+        Person(string firstName, string gender, int age) {
+            FirstName = firstName;
+            Gender = gender;
+            Age = age;
+        }
 };
 
 // --------------------------------------------------
 
 void Loop_MenuChoice();
-void AddPerson(list<Person>& AllPeople);
-void DeletePerson(list<Person>& AllPeople);
-void PrintAllPeople(list<Person>& AllPeople);
+void AddPerson(list<Person>& allPeople);
+void DeletePerson(list<Person>& allPeople);
+void PrintAllPeople(list<Person>& allPeople);
 
 // --------------------------------------------------
 
@@ -36,7 +37,7 @@ int main() {
 // --------------------------------------------------
 
 void Loop_MenuChoice(){
-    list<Person> AllPeople;
+    list<Person> allPeople;
     string inputChoice;
     
     while(2 > 1) {
@@ -54,13 +55,13 @@ void Loop_MenuChoice(){
         cout << "\n";
 
         if(inputChoice == "1"){
-            AddPerson(AllPeople);
+            AddPerson(allPeople);
         }
         else if(inputChoice == "2"){
-            DeletePerson(AllPeople);
+            DeletePerson(allPeople);
         }
         else if(inputChoice == "3"){
-            PrintAllPeople(AllPeople);
+            PrintAllPeople(allPeople);
         }
         else if(inputChoice == "4"){
             cout << "\n\n";
@@ -71,12 +72,52 @@ void Loop_MenuChoice(){
         }
     }
 }
-void AddPerson(list<Person>& AllPeople){
-    cout << "Here is where I would: add a person.\n";
+void AddPerson(list<Person>& allPeople){
+    string firstName, gender, ageStr;
+    int ageNum;
+
+    cout << "First name: ";
+    cin >> firstName;
+    cout << "\n";
+
+    while(2 > 1) {
+        cout << "Gender\n";
+        cout << "1. Male\n";
+        cout << "2. Female\n";
+        cout << "Enter the number here: ";
+        cin >> gender;
+
+        if(gender == "1"){
+            gender = "Male";
+            break;
+        }
+        else if(gender == "2"){
+            gender = "Female";
+            break;
+        }
+        else {
+            cout << "\"" << gender << "\" is not an option.\n\n";
+        }
+    }
+    while(2 > 1) {
+        cout << "\n";
+        cout << "Age: ";
+        cin >> ageStr;
+        
+        try {
+            ageNum = stoi(ageStr);
+            break;
+        }
+        catch(...) {
+            cout << "\"" << ageStr << "\" must be an integer >= 0.\n";
+        }
+    }
+    Person newPerson(firstName, gender, ageNum);
+    allPeople.push_back(newPerson);
 }
-void DeletePerson(list<Person>& AllPeople){
+void DeletePerson(list<Person>& allPeople){
     cout << "Here is where I would: delete a person.\n";
 }
-void PrintAllPeople(list<Person>& AllPeople){
+void PrintAllPeople(list<Person>& allPeople){
     cout << "Here is where I would: print all people.\n";
 }
