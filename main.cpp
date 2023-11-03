@@ -1,5 +1,5 @@
 #include <iostream>
-#include <list>
+#include <vector>
 using namespace std;
 
 // --------------------------------------------------
@@ -20,9 +20,9 @@ class Person {
 // --------------------------------------------------
 
 void Loop_MenuChoice();
-void AddPerson(list<Person>& allPeople);
-void DeletePerson(list<Person>& allPeople);
-void PrintAllPeople(list<Person>& allPeople);
+void AddPerson(vector<Person>& allPeople);
+void DeletePerson(vector<Person>& allPeople);
+void PrintAllPeople(vector<Person>& allPeople);
 
 // --------------------------------------------------
 
@@ -37,7 +37,7 @@ int main() {
 // --------------------------------------------------
 
 void Loop_MenuChoice(){
-    list<Person> allPeople;
+    vector<Person> allPeople;
     string inputChoice;
     
     while(2 > 1) {
@@ -72,7 +72,7 @@ void Loop_MenuChoice(){
         }
     }
 }
-void AddPerson(list<Person>& allPeople){
+void AddPerson(vector<Person>& allPeople){
     string firstName, gender, ageStr;
     int ageNum;
 
@@ -115,9 +115,21 @@ void AddPerson(list<Person>& allPeople){
     Person newPerson(firstName, gender, ageNum);
     allPeople.push_back(newPerson);
 }
-void DeletePerson(list<Person>& allPeople){
-    cout << "Here is where I would: delete a person.\n";
+void DeletePerson(vector<Person>& allPeople){
+    string firstName;
+    
+    cout << "Enter their first name: ";
+    cin >> firstName;
+
+    for(int i = 0; i < allPeople.size(); i++) {
+        if (firstName == allPeople[i].FirstName) {
+            allPeople.erase(allPeople.begin() + i);
+            cout << "\"" << firstName << "\" was successfully removed.\n";
+            return;
+        }
+    }
+    cout << "\"" << firstName << "\" was not found in the list.\n";
 }
-void PrintAllPeople(list<Person>& allPeople){
+void PrintAllPeople(vector<Person>& allPeople){
     cout << "Here is where I would: print all people.\n";
 }
