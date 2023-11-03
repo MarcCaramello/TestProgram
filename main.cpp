@@ -4,13 +4,13 @@ using namespace std;
 
 // --------------------------------------------------
 
-class Person {
+class Person{
     public:
         string FirstName;
         string Gender;
         int Age;
 
-        Person(string firstName, string gender, int age) {
+        Person(string firstName, string gender, int age){
             FirstName = firstName;
             Gender = gender;
             Age = age;
@@ -26,7 +26,7 @@ void PrintAllPeople(vector<Person>& allPeople);
 
 // --------------------------------------------------
 
-int main() {
+int main(){
     cout << "\n";
     cout << "This program is used to keep track of a database of people.\n";
     Loop_MenuChoice();
@@ -40,7 +40,7 @@ void Loop_MenuChoice(){
     vector<Person> allPeople;
     string inputChoice;
     
-    while(2 > 1) {
+    while(2 > 1){
         cout << "_________________________\n";
         cout << "\n";          
         cout << "What would you like to do?.\n";
@@ -67,7 +67,7 @@ void Loop_MenuChoice(){
             cout << "\n\n";
             exit(0);
         }
-        else {
+        else{
             cout << "\"" << inputChoice << "\" is not an option.\n";
         }
     }
@@ -80,7 +80,7 @@ void AddPerson(vector<Person>& allPeople){
     cin >> firstName;
     cout << "\n";
 
-    while(2 > 1) {
+    while(2 > 1){
         cout << "Gender\n";
         cout << "1. Male\n";
         cout << "2. Female\n";
@@ -95,20 +95,20 @@ void AddPerson(vector<Person>& allPeople){
             gender = "Female";
             break;
         }
-        else {
+        else{
             cout << "\"" << gender << "\" is not an option.\n\n";
         }
     }
-    while(2 > 1) {
+    while(2 > 1){
         cout << "\n";
         cout << "Age: ";
         cin >> ageStr;
         
-        try {
+        try{
             ageNum = stoi(ageStr);
             break;
         }
-        catch(...) {
+        catch(...){
             cout << "\"" << ageStr << "\" must be an integer >= 0.\n";
         }
     }
@@ -121,15 +121,22 @@ void DeletePerson(vector<Person>& allPeople){
     cout << "Enter their first name: ";
     cin >> firstName;
 
-    for(int i = 0; i < allPeople.size(); i++) {
-        if (firstName == allPeople[i].FirstName) {
+    for(int i = 0; i < allPeople.size(); i++){
+        if (firstName == allPeople[i].FirstName){
             allPeople.erase(allPeople.begin() + i);
             cout << "\"" << firstName << "\" was successfully removed.\n";
             return;
         }
     }
-    cout << "\"" << firstName << "\" was not found in the list.\n";
+    cout << "\"" << firstName << "\" was not found in the database.\n";
 }
 void PrintAllPeople(vector<Person>& allPeople){
-    cout << "Here is where I would: print all people.\n";
+    if(allPeople.size() == 0){
+        cout << "There is nobody in the database.\n";
+    }
+    else {
+        for(int i = 0; i < allPeople.size(); i++){
+            cout << allPeople[i].FirstName << ": is a " << allPeople[i].Gender << ", who is " << allPeople[i].Age << " years old.\n";
+        }
+    }
 }
